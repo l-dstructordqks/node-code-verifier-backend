@@ -1,0 +1,55 @@
+{
+  "name": "code-verifier-backend",
+  "version": "1.0.0",
+  "description": "Backend Node + Express + TS + Swagger",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "test": "jest",
+    "serve:coverage": "npm run test && cd coverage/lcov-report && npx serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/l-dstructordqks/node-code-verifier-backend.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "typescript",
+    "swagger",
+    "mongoose"
+  ],
+  "author": "@ldstructodqks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/l-dstructordqks/node-code-verifier-backend/issues"
+  },
+  "homepage": "https://github.com/l-dstructordqks/node-code-verifier-backend#readme",
+  "dependencies": {
+    "dotenv": "^17.0.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.10",
+    "concurrently": "^9.2.0",
+    "eslint": "^9.30.1",
+    "globals": "^16.3.0",
+    "jest": "^30.0.4",
+    "nodemon": "^3.1.10",
+    "serve": "^14.2.4",
+    "supertest": "^7.1.1",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.1",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-node-externals": "^3.0.0",
+    "webpack-shell-plugin": "^0.5.0"
+  }
+}

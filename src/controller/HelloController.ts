@@ -1,6 +1,6 @@
 import { BasicResponse } from "./types";
 import { IHelloController } from "./interfaces";
-import { LogSuccess } from "@/utils/logger"; // Reference from "params" de tsconfig.json
+import { LogSuccess } from "../utils/logger"; // Reference from "params" de tsconfig.json
 
 export class HelloController implements IHelloController {
 

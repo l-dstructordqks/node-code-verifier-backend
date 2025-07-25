@@ -1,4 +1,7 @@
 import express, { Express, Request, Response } from "express";
+import mongoose from "mongoose";
+// Swagger
+import swaggerUi from 'swagger-ui-express';
 
 // Security
 import cors from 'cors'
@@ -12,6 +15,20 @@ import rootRouter from '../routes';
 // * Create Express APP or Specify the server
 const server: Express = express();
 
+
+// * Swagger Config and route
+server.use(
+    '/docs',
+    swaggerUi.serve,
+    swaggerUi.setup(undefined, {
+        swaggerOptions: {
+            url: "/swagger.json",
+            explorer: true
+        }
+    })
+)
+
+
 // * Define SERVER to use "/api" and use rootRouter from 'index.ts' in routes
 // From this point onver: http://localhost:8000/api/...
 server.use(
@@ -23,6 +40,8 @@ server.use(
 server.use(express.static('public'));
 
 // TODO: Mongoose Connection
+mongoose.connect('mongodb://localhost:27017/codeverification')
+
 
 // * Security config
 server.use(helmet());

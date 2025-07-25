@@ -6,7 +6,10 @@ export const userEntity = () => {
 			name: String,
 			email: String,
 			age: Number
+		},
+		{
+			collection: 'Users'
 		}
 	)
-	return mongoose.model('Users', userSchema); //aignamos la colecion  al modelo correspondiente
+	return mongoose.models.Users || mongoose.model('Users', userSchema); //aignamos la colecion  al modelo correspondiente
 }

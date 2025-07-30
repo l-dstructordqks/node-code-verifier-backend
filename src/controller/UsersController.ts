@@ -21,11 +21,13 @@ export class UsersController implements IUserController {
 
         if(id) {
             LogSuccess(`[/api/users] Get User By ID: ${id} `)
-
             response = await getUserByID(id);
+            // Remove the password
+            response.password = '';
         } else {
             LogSuccess('[/api/users] Get All Users Request')
             response = await getAllUsers();
+            // TODO: remove passwords from response
         }
         return response;
         
@@ -44,12 +46,14 @@ export class UsersController implements IUserController {
             LogSuccess(`[/api/users] Delete User By ID: ${id} `)
             await deleteUserByID(id).then((r) => {
                 response = {
+                    status: 204,
                     message: `User with id ${id} deleted successfully`
                 }
             })
         } else {
             LogWarning('[/api/users] Delete User Request WITHOUT ID')
             response = {
+                status: 400,
                 message: 'Pleasem, provide an ID to remove from database'
             }
         }
@@ -57,18 +61,6 @@ export class UsersController implements IUserController {
         
     }
 
-    @Post("/")
-    public async createUser(user: any): Promise<any> {
-        let response: any = '';
-
-        await createUser(user).then((r) => {
-            LogSuccess(`[/api/users] Create User: ${user}`);
-            response = {
-                message: `User created succesfully: ${user.name}`
-            }
-        })
-        return response
-    }
 
     @Put("/")
     public async updateUser(@Query()id: string, user: any): Promise<any> {
@@ -78,12 +70,14 @@ export class UsersController implements IUserController {
             LogSuccess(`[/api/users] Update User By ID: ${id} `)
             await updateUserByID(id, user).then((r) => {
                 response = {
+                    status: 204,
                     message: `User with id ${id} updated successfully`
                 }
             })
         } else {
             LogWarning('[/api/users] Update User Request WITHOUT ID')
             response = {
+                status: 400,
                 message: 'Pleasem, provide an ID to update an existing user'
             }
         }

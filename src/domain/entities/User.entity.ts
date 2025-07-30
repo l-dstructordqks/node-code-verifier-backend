@@ -1,15 +1,17 @@
 import mongoose from "mongoose";
+import { IUser } from "../interfaces/IUser.interface";
 
 export const userEntity = () => {
-	let userSchema = new mongoose.Schema(
+	let userSchema = new mongoose.Schema<IUser>(
 		{
-			name: String,
-			email: String,
-			age: Number
+			name: { type: String, required: true },
+			email: { type: String, required: true },
+			password: { type: String, required: true },
+			age: { type: Number, required: true }
 		},
 		{
 			collection: 'Users'
 		}
-	)
-	return mongoose.models.Users || mongoose.model('Users', userSchema); //aignamos la colecion  al modelo correspondiente
+	);
+	return mongoose.models.Users || mongoose.model<IUser>('Users', userSchema); //aignamos la colecion  al modelo correspondiente
 }

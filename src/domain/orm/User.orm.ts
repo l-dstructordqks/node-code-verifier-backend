@@ -1,5 +1,6 @@
 import { userEntity } from "../entities/User.entity";
 import { LogSuccess, LogError } from "../../utils/logger";
+import { IUser } from "../interfaces/IUser.interface";
 
 // CRUD
 
@@ -45,7 +46,7 @@ export const deleteUserByID = async (id: string) : Promise<any | undefined> => {
 }
 
 // - Create New User
-export const createUser = async (user: any): Promise<any | undefined> => {
+export const createUser = async (user: IUser): Promise<any | undefined> => {
 
     try {
         // Inicializes the model
@@ -73,9 +74,3 @@ export const updateUserByID = async (id: string, user: any): Promise<any | undef
 
     }
 }
-// TODO:
-// - Get User By ID
-// - Get User By Email
-// - Delete User By ID
-// - Create New User
-// - Update User By ID
